@@ -1,4 +1,4 @@
-![Simple Form Logo](https://raw.github.com/heartcombo/simple_form/master/simple_form.png)
+![Simple Form Logo](https://raw.github.com/heartcombo/simple_form/main/simple_form.png)
 
 Rails forms made easy.
 
@@ -14,7 +14,7 @@ INFO: This README refers to **Simple Form** 5.0. For older releases, check the r
 ## Table of Contents
 
 - [Installation](#installation)
-  - [Bootstrap](#bootstrap)
+  - [Bootstrap](#bootstrap-5)
   - [Zurb Foundation 5](#zurb-foundation-5)
   - [Country Select](#country-select)
 - [Usage](#usage)
@@ -301,7 +301,18 @@ the wrapper as well:
   <%= f.input :date_of_birth, as: :date, start_year: Date.today.year - 90,
                               end_year: Date.today.year - 12, discard_day: true,
                               order: [:month, :year] %>
-  <%= f.input :accepts, as: :boolean, checked_value: true, unchecked_value: false %>
+  <%= f.input :accepts, as: :boolean, checked_value: 'positive', unchecked_value: 'negative' %>
+  <%= f.button :submit %>
+<% end %>
+```
+
+By default, **Simple Form** generates a hidden field to handle the un-checked case for boolean fields.
+Passing `unchecked_value: false` in the options for boolean fields will cause this hidden field to be omitted,
+following the convention in Rails. You can also specify `include_hidden: false` to skip the hidden field:
+
+```erb
+<%= simple_form_for @user do |f| %>
+  <%= f.input :just_the_checked_case, as: :boolean, include_hidden: false %>
   <%= f.button :submit %>
 <% end %>
 ```
@@ -368,7 +379,7 @@ end
 </form>
 ```
 
-To view the actual RDocs for this, check them out here - http://rubydoc.info/github/heartcombo/simple_form/master/SimpleForm/FormBuilder:input_field
+To view the actual RDocs for this, check them out here - http://rubydoc.info/github/heartcombo/simple_form/main/SimpleForm/FormBuilder:input_field
 
 ### Collections
 
@@ -1295,7 +1306,7 @@ end
 
 You can view the **Simple Form** documentation in RDoc format here:
 
-http://rubydoc.info/github/heartcombo/simple_form/master/frames
+http://rubydoc.info/github/heartcombo/simple_form/main/frames
 
 ### Supported Ruby / Rails versions
 
@@ -1321,11 +1332,10 @@ If you have discovered a security related bug, please do NOT use the GitHub issu
 * Felipe Renan (https://github.com/feliperenan)
 
 [![Gem Version](https://fury-badge.herokuapp.com/rb/simple_form.png)](http://badge.fury.io/rb/simple_form)
-[![Code Climate](https://codeclimate.com/github/heartcombo/simple_form.png)](https://codeclimate.com/github/heartcombo/simple_form)
 [![Inline docs](http://inch-ci.org/github/heartcombo/simple_form.png)](http://inch-ci.org/github/heartcombo/simple_form)
 
 ## License
 
-MIT License. Copyright 2020 Rafael França, Carlos Antônio da Silva. Copyright 2009-2019 Plataformatec.
+MIT License. Copyright 2020-2023 Rafael França, Carlos Antônio da Silva. Copyright 2009-2019 Plataformatec.
 
 The Simple Form logo is licensed under [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License](https://creativecommons.org/licenses/by-nc-nd/4.0/).

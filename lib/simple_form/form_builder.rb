@@ -497,7 +497,7 @@ module SimpleForm
           conditions = reflection.options[:conditions]
           conditions = object.instance_exec(&conditions) if conditions.respond_to?(:call)
 
-          relation = relation.where(conditions) if relation.respond_to?(:where)
+          relation = relation.where(conditions) if relation.respond_to?(:where) && conditions.present?
           relation = relation.order(order) if relation.respond_to?(:order)
         end
 
@@ -673,11 +673,7 @@ module SimpleForm
     def attempt_mapping(mapping, at)
       return if SimpleForm.inputs_discovery == false && at == Object
 
-      begin
-        at.const_get(mapping)
-      rescue NameError => e
-        raise if e.message !~ /#{mapping}$/
-      end
+      at.const_get(mapping) if at.const_defined?(mapping)
     end
 
     def attempt_mapping_with_custom_namespace(input_name)

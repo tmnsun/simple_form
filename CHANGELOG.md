@@ -1,8 +1,16 @@
 ## Unreleased
 
-* Add support for Rails 7.0 and Ruby 3.1 (no changes required)
+* Remove test files from the gem package. [@orien](https://github.com/orien)
+* Speed up input mapping lookup by avoiding rescuing exceptions. [@meanphil](https://github.com/meanphil) [@kriom](https://github.com/kriom) [@egeek](https://github.com/egeek)
+
+## 5.2.0
+
+* Add support for Rails 7.0 and Ruby 3.1/3.2 (no changes required)
 * Fix escaping issue on boolean input with `include_hidden: false` and custom wrapper.
 * Update Bootstrap install generator version 5. [@mhw](https://github.com/mhw)
+* Accept proc as `group_method` for grouped collection select
+* Honor `include_hidden` option on inline boolean inputs [@yboulkaid](https://github.com/yboulkaid)
+* Fix deprecation error when using country_select input.
 
 ## 5.1.0
 
